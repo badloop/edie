@@ -1,30 +1,34 @@
 // use std::fs::{self, File};
 // use std::io::{Read, Seek, SeekFrom};
+use serde::{Deserialize, Serialize};
 
-#[derive(Debug, Default)]
+#[derive(Debug, Default, Serialize, Deserialize)]
 struct Item {
     name: String,
     count: i8,
 }
 
-#[derive(Debug, Default)]
+#[derive(Debug, Default, Serialize, Deserialize)]
 struct Inventory {
-    items: Option<Vec<Item>>,
+    items: Vec<Item>,
 }
 
-#[derive(Debug, Default)]
+#[derive(Debug, Default, Serialize, Deserialize)]
 struct Suit {
-    name: Option<String>,
-    suit_type: Option<String>,
-    inventory: Option<Inventory>,
+    name: String,
+    suit_type: String,
+    inventory: Inventory,
 }
 
-#[derive(Debug, Default)]
+#[derive(Debug, Default, Serialize, Deserialize)]
 struct Commander {
-    name: Option<String>,
-    suit: Option<Suit>,
+    name: String,
+    suit: Suit,
 }
 
 fn main() {
-    println!("Commander: {:?}", Commander::default());
+    let mut cmdr = Commander::default();
+    cmdr.name = String::from("badloop");
+    let j = serde_json::to_string(&cmdr).unwrap();
+    println!("{}", j);
 }
