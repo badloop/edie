@@ -8,7 +8,9 @@ edition = "2021"
 [dependencies]
 axum = "0.6.20"
 derivative = "2.2.0"
+nop-json = "2.0.5"
 notify = "6.1.1"
+read_iter = "0.1.2"
 rust = "0.0.1"
 serde = {version = "1.0.190", features = ["derive"]}
 serde_json = "1.0.107"
